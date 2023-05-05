@@ -11,6 +11,7 @@ import MainFooter from "./Footer/mainFooter";
 const Main: NextPage = () => {
   return (
     <>
+
       <Carousel
         show={"hidden"}
         widthSize="w-[98%]"
