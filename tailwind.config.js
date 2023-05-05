@@ -28,6 +28,8 @@ module.exports = {
         mainFooterLink: "#CDDBFE",
         mouseoverToolBar: "#c6d0d9",
         bgRecipColor: "#f9f9f9",
+        searchIconColor:"#B7C1CF",
+        searchBarColor:"#B3B5C0"
       },
       gridTemplateColumns: {
         footer: "5fr 5fr",
