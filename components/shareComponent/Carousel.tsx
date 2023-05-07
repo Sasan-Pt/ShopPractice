@@ -25,39 +25,26 @@ const Carousel: React.FC<Types> = ({
 
   const [elemental, setElemental] = useState<any>();
   const mainUl: any = useRef();
-  const [forwardNumber, setForwardNumber] = useState<number>(1);
+  //const [forwardNumber, setForwardNumber] = useState<number>(1);
   const [price, setPrice] = useState<number>(0);
-  const fest = () => {};
-  const startCarousel = () => {
-    setLoop(
-      setInterval(() => {
-        Forward();
-      }, 10000)
-    );
-  };
-  const StopCarousel = () => {
-    // @ts-ignore
-    clearInterval(loop);
-  };
-
-  /*    useEffect(()=>{
-        startCarousel()
-        async function test4(){
-                const response=await axios.get("/api/hello")
-            setPictures(response.data.pictures)
-        }
-        test4()
-    },[])*/
+  /*const fest = () => {};*/
   const { data, isLoading, error, isError } = useQuery("carousel", () => {
     return axios.get("/api/hello");
   });
+let forwardNumber=useRef(0)
 
-  const dataPictures = data?.data.pictures;
 
+let test5=useRef(6)
+
+
+ const dataPictures = data?.data.pictures;
+ console.log(dataPictures)
+  console.log("i was rerendered")
   const size = mainUl?.current?.children[0].getBoundingClientRect().width;
 
   const moveref: any = useRef();
-  const carouselMove = (key: string, e) => {
+  const carouselMove = async (key: string, e) => {
+    console.log(key)
     const currentSlide = mainUl.current.querySelector(".current-slide");
 
     const prevSlide = currentSlide.previousElementSibling
@@ -76,35 +63,42 @@ const Carousel: React.FC<Types> = ({
       : null;
 
     const forwardSlideSize = nextElement ? nextElement.style.left : null;
-    if (key === "forward") {
-      setForwardNumber((prevState) => prevState + 1);
-      if (forwardNumber >= 5) {
-        setPrice(dataPictures[0].price);
+    if (key === "forward" ) {
+      //setForwardNumber((prevState) => prevState + 1);
+      forwardNumber.current+=1
+      console.log(test5.current)
+      console.log("i work belice me")
+      console.log(forwardNumber)
+      if (forwardNumber.current >= 5 ) {
+        setPrice(dataPictures[0]?.price);
       } else {
-        setPrice(dataPictures[forwardNumber].price);
+        setPrice(dataPictures[forwardNumber.current]?.price);
       }
 
       currentSlide.classList.remove("current-slide");
       currentDot.classList.remove("current-slide");
-      if (forwardNumber < dataPictures.length) {
+      console.log(forwardNumber+" "+" "+ "iwas here")
+      if (forwardNumber.current < dataPictures.length) {
         mainUl.current.style.transform =
           "translateX(-" + forwardSlideSize + ")";
         nextElement?.classList.add("current-slide");
         nextDot.classList.add("current-slide");
       }
-      if (forwardNumber >= dataPictures.length) {
-        setForwardNumber(1);
+      if (forwardNumber.current >= dataPictures.length) {
+        //setForwardNumber(1);
+        forwardNumber.current=1
         mainUl.current.children[0].classList.add("current-slide");
         dotFinder.current.children[0].classList.add("current-slide");
         mainUl.current.style.transform = "translateX(-" + 0 + ")";
       }
     }
     if (key === "backwards") {
-      setForwardNumber((prevState) => prevState - 1);
+      //setForwardNumber((prevState) => prevState - 1);
+      forwardNumber.current-=1
 
       currentSlide.classList.remove("current-slide");
       currentDot.classList.remove("current-slide");
-      if (forwardNumber > 1) {
+      if (forwardNumber.current > 1) {
         console.log("i worked too");
         prevDot.classList.add("current-slide");
         prevSlide?.classList.add("current-slide");
@@ -112,13 +106,13 @@ const Carousel: React.FC<Types> = ({
       } else {
         mainUl.current.style.transform =
           "translateX(-" + mainUl.current.children[4].style.left + ")";
-        setForwardNumber(dataPictures.length);
+        //setForwardNumber(dataPictures.length);
+        forwardNumber.current=dataPictures.length
         dotFinder.current.children[4].classList.add("current-slide");
         mainUl.current.children[4]?.classList.add("current-slide");
         console.log(prevSlide);
       }
     }
-    console.log(dataPictures.length);
   };
   console.log(forwardNumber);
   const dotFinder: any = useRef();
@@ -134,7 +128,8 @@ const Carousel: React.FC<Types> = ({
       "translateX(-" + slide[targetIndex].style.left + ")";
     currentSlide.classList.remove("current-slide");
     slide[targetIndex]?.classList.add("current-slide");
-    setForwardNumber(targetIndex + 1);
+    //setForwardNumber(targetIndex + 1);
+    forwardNumber.current=targetIndex+1
 
     currentDot.classList.remove("current-slide");
     targetDot.classList.add("current-slide");
@@ -147,6 +142,22 @@ const Carousel: React.FC<Types> = ({
     if (dataPictures) {
       setPrice(dataPictures[0].price);
     }
+    //startCarousel()
+
+    const intervalId = setInterval(() => {
+      carouselMove("forward")
+      if (dataPictures.length >= 5) {
+        clearInterval(intervalId);
+        setInterval(() => {
+          carouselMove("forward")
+        }, 10000);
+      }
+    }, 10000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+
   }, [dataPictures]);
 
   if (mainUl === true) {
@@ -158,7 +169,66 @@ const Carousel: React.FC<Types> = ({
       slide.style.left = size * index + "px";
     });
   }
+/*  const startCarousel = () => {
+    clearInterval(loop)
+    setLoop(
+        setInterval(() => {
+          // @ts-ignore
+          test()
+        }, 10000)
+    );
+  };*/
+/*
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      carouselMove("forward")
+      if (dataPictures.length >= 5) {
+        clearInterval(intervalId);
+        setInterval(() => {
+          carouselMove("forward")
+        }, 10000);
+      }
+    }, 10000);
 
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);*/
+
+  function test(){
+    if(dataPictures && mainUl){
+      carouselMove("forward",true);
+    }
+  }
+  const StopCarousel = () => {
+    // @ts-ignore
+    clearInterval(loop);
+  };
+  /*
+    useEffect(()=>{
+          startCarousel()
+
+      },[])*/
+/*  const [testt,setTest]=useState(0)
+  function tes(){
+    setTest(prevState => prevState+1)
+  }
+  useEffect(()=>{
+    const intervalId = setInterval(() => {
+      tes()
+      if (tes >= 5) {
+        clearInterval(intervalId);
+        setInterval(() => {
+          tes()
+        }, 10000);
+      }
+    }, 10000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  },[])
+  console.log(testt+"      "+"nothing works")*/
   return (
     <>
       <div className={`flex ${translate}`}>
@@ -250,4 +320,4 @@ const Carousel: React.FC<Types> = ({
   );
 };
 
-export default Carousel;
+export default  React.memo(Carousel) ;

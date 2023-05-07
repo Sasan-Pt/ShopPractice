@@ -13,7 +13,7 @@ const Ribbon = () => {
         style={{ direction: "rtl" }}
       >
         <div className="mr-auto  flex align-center border-black  aphase:hidden mt-2 mb-2 ">
-          {showSearchBar ? <input className={" w-16  h-4  bg-searchBarColor flex align-center"}/> : null }
+          {showSearchBar ? <input className={"w-20  h-4  bg-searchBarColor flex align-center rounded-md ml-2 text-xs"}/> : null }
           <div className="flex  align-center justify-center w-8 h-4 bg-searchIconColor "onClick={()=>{setShowSearchBar(!showSearchBar)}}>
             <Image src={SearchImage} width={23} height={23}/>
           </div>
