@@ -11,10 +11,9 @@ import MainFooter from "./Footer/mainFooter";
 const Main: NextPage = () => {
   return (
     <>
-
       <Carousel
         show={"hidden"}
-        widthSize="w-[98%]"
+        widthSize="w-full p-1"
         marginLeft={"mr-auto"}
         translate={"null mt-2"}
         secondShow={"null"}
@@ -26,9 +25,10 @@ const Main: NextPage = () => {
         input={"بازی های جدید"}
         disable={true}
       />
+        <div className={"secondPhase:w-[70]"}></div>
       <Carousel
-        show={null}
-        widthSize="w-[90%]"
+        show={ "w-[60%]"}
+        widthSize="w-[90%] secondPhase:w-[60%]"
         marginLeft={"mr-0"}
         translate={"translate-x-[-0%] mt-2 ml-2"}
         secondShow={"hidden"}

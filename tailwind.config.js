@@ -13,7 +13,8 @@ module.exports = {
         headerPhase:"650",
         'firstPhase': {'max': '844px'},
         "secondPhase":{'max':"650px"},
-        "thirdPhase":{"max":"403px"}
+        "thirdPhase":{"max":"403px"},
+        "fourthPhase":{"max":"530px"}
       },
       colors: {
         firstColor: "#B7C4CF",

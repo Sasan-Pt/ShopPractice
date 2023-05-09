@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const MainFooter = () => {
   return (
@@ -14,27 +15,27 @@ const MainFooter = () => {
             style={{ direction: "rtl" }}
           >
             <div className="mr-4 grid  grid-cols-footer grid-rows-nowork">
-              <div className=" col-start-1 row-start-1  flex items-center justify-center text-mainFooterLink">
+              <div className=" col-start-1 col-end-3 row-start-1  flex items-center justify-center text-mainFooterLink">
                 <ul>
-                  <li>دیدن بازی های جدید</li>
-                  <li>دیدن بازی های تخفیف</li>
-                  <li>دیدن بازی های پر فروش</li>
-                  <li>دیدن تمامی بازی ها</li>
+                  <li><Link href="/">بازی های جدید</Link></li>
+                  <li><Link href="newGames">بازی های تخفیف</Link></li>
+                  <li> <Link href="offGames">بازی های پر فروش</Link></li>
+                  <li><Link href="contact">تمامی بازی ها</Link></li>
                 </ul>
               </div>
-              <div className="col-start-2 row-start-1 flex items-center justify-center text-mainFooterLink">
+{/*              <div className="col-start-2 row-start-1 flex items-center justify-center text-mainFooterLink">
                 <ul>
                   <li>پشتیبانی</li>
                   <li>پیشنهاذات</li>
                   <li> درخواست بازی</li>
                   <li> سیستم</li>
                 </ul>
-              </div>
-              <div className="col-span-2 row-start-2  flex items-end justify-self-end pb-2">
+              </div>*/}
+              <div className="col-start-1 col-end-3 row-start-2  flex items-end justify-self-end pb-2">
                 <div>
                   <div className="flex ">
-                    <div>989216795326+</div>
-                    <div className="pr-2">
+                    <div >989216795326+</div>
+                    <div className="pr-2 min-w-[25px] ">
                       <Image
                         src="/footerImages/phoneB.png"
                         height={18}
@@ -44,7 +45,7 @@ const MainFooter = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-start-1 row-start-2 flex items-end pb-2">
+              <div className="col-start-1 row-start-2 flex items-end pb-2 fourthPhase:hidden">
                 تلفن تماس:
               </div>
 
@@ -52,7 +53,7 @@ const MainFooter = () => {
                 <div>
                   <div className="flex ">
                     <div>loremipsum@gmail.com</div>
-                    <div className="pr-2">
+                    <div className="pr-2 min-w-[25px] ">
                       <Image
                         src="/footerImages/mail.png"
                         height={18}
@@ -62,7 +63,7 @@ const MainFooter = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-start-1 row-start-3 flex ">ایمیل:</div>
+              <div className="col-start-1 row-start-3 flex fourthPhase:hidden">ایمیل:</div>
 
               <div className="col-start-1 row-start-4 flex">
                 ما را در شبکه های اجتماعی دنبال کنید

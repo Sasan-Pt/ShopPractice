@@ -9,7 +9,7 @@ const Ribbon = () => {
   return (
     <>
       <div
-        className="flex h-full  w-full bg-firstColor pr-[2%] relative"
+        className="flex h-full  w-full bg-firstColor relative "
         style={{ direction: "rtl" }}
       >
         <div className="mr-auto  flex align-center border-black  aphase:hidden mt-2 mb-2 ">

@@ -45,24 +45,23 @@ let test5=useRef(6)
   const moveref: any = useRef();
   const carouselMove = async (key: string, e) => {
     console.log(key)
-    const currentSlide = mainUl.current.querySelector(".current-slide");
+    const currentSlide = mainUl?.current?.querySelector(".current-slide");
 
-    const prevSlide = currentSlide.previousElementSibling
-      ? currentSlide.previousElementSibling
+    const prevSlide = currentSlide?.previousElementSibling
+      ? currentSlide?.previousElementSibling
       : { style: 0 };
     const prevSlideSize = prevSlide ? prevSlide.style.left : ["hi"];
-    console.log(currentSlide.nex);
-    console.log(prevSlide);
 
-    const currentDot = dotFinder.current.querySelector(".current-slide");
 
-    const prevDot = currentDot.previousElementSibling;
-    const nextDot = currentDot.nextElementSibling;
-    const nextElement = currentSlide.nextElementSibling
-      ? currentSlide.nextElementSibling
+    const currentDot = dotFinder?.current?.querySelector(".current-slide");
+
+    const prevDot = currentDot?.previousElementSibling;
+    const nextDot = currentDot?.nextElementSibling;
+    const nextElement = currentSlide?.nextElementSibling
+      ? currentSlide?.nextElementSibling
       : null;
 
-    const forwardSlideSize = nextElement ? nextElement.style.left : null;
+    const forwardSlideSize = nextElement ? nextElement?.style?.left : null;
     if (key === "forward" ) {
       //setForwardNumber((prevState) => prevState + 1);
       forwardNumber.current+=1
@@ -75,16 +74,16 @@ let test5=useRef(6)
         setPrice(dataPictures[forwardNumber.current]?.price);
       }
 
-      currentSlide.classList.remove("current-slide");
-      currentDot.classList.remove("current-slide");
+      currentSlide?.classList?.remove("current-slide");
+      currentDot?.classList?.remove("current-slide");
       console.log(forwardNumber+" "+" "+ "iwas here")
-      if (forwardNumber.current < dataPictures.length) {
+      if (forwardNumber.current < dataPictures.length && mainUl.current) {
         mainUl.current.style.transform =
           "translateX(-" + forwardSlideSize + ")";
         nextElement?.classList.add("current-slide");
-        nextDot.classList.add("current-slide");
+        nextDot?.classList?.add("current-slide");
       }
-      if (forwardNumber.current >= dataPictures.length) {
+      if (forwardNumber.current >= dataPictures.length && mainUl.current) {
         //setForwardNumber(1);
         forwardNumber.current=1
         mainUl.current.children[0].classList.add("current-slide");
@@ -145,6 +144,7 @@ let test5=useRef(6)
     //startCarousel()
 
     const intervalId = setInterval(() => {
+      clearInterval(intervalId);
       carouselMove("forward")
       if (dataPictures.length >= 5) {
         clearInterval(intervalId);
@@ -158,7 +158,7 @@ let test5=useRef(6)
       clearInterval(intervalId);
     };
 
-  }, [dataPictures]);
+  }, [dataPictures && mainUl]);
 
   if (mainUl === true) {
     setElemental(Object.values(mainUl?.current?.children));
@@ -288,10 +288,10 @@ let test5=useRef(6)
           className={`h-96 w-[40%] bg-buttons_Color ${show}  mr-2 flex flex-col items-center justify-center`}
         >
           <div>Cyberpunk 2077</div>
-          <div>{price}</div>
+          <div >{price}</div>
           <Button
             buttonColor={
-              "bg-gradient-to-r from-startButtonColor to-endButtonColor w-48 h-12"
+              "bg-gradient-to-r from-startButtonColor to-endButtonColor w-48 h-12 secondPhase:w-24"
             }
             textColor={"text-white"}
             input={"خرید"}
