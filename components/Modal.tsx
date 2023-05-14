@@ -38,9 +38,8 @@ export default function Modal() {
   const handleClickOutside = (e) => {
     if (refOne && !refOne.current?.contains(e.target)) {
       showState(false);
-      console.log("i was clicked");
     } else {
-      console.log("bitch");
+      null
     }
   };
 
@@ -111,16 +110,12 @@ export default function Modal() {
       if (result.error === null) {
         showState(false);
       }
-      console.log(result);
-      console.log(result.error + "im not wrong");
-      console.log("u were wrong m8");
+
     } else {
       try {
         const result = await mutate(info);
-        console.log(result);
       } catch (error) {
-        console.log("this shit hits");
-        console.log(error);
+        console.log("there was a error"+error)
       }
     }
   };
@@ -134,7 +129,7 @@ export default function Modal() {
       },
     });
     const data = await response.json();
-    console.log(data);
+
   }
   const modalContent = show ? (
     <>

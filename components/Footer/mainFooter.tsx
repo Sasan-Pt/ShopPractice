@@ -11,7 +11,7 @@ const MainFooter = () => {
       <div className="mt-8">
         <div className="flex flex-wrap">
           <div
-            className="flex basis-1/2  items-center justify-center text-white"
+            className="flex basis-1/2  items-center justify-center text-white finalPhase:basis-full"
             style={{ direction: "rtl" }}
           >
             <div className="mr-4 grid  grid-cols-footer grid-rows-nowork">
@@ -63,7 +63,7 @@ const MainFooter = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-start-1 row-start-3 flex fourthPhase:hidden">ایمیل:</div>
+              <div className="col-start-1 row-start-3 flex fourthPhase:hidden ">ایمیل:</div>
 
               <div className="col-start-1 row-start-4 flex">
                 ما را در شبکه های اجتماعی دنبال کنید
@@ -95,18 +95,18 @@ const MainFooter = () => {
               </div>
             </div>
           </div>
-          <div className=" basis-1/2" style={{ direction: "rtl" }}>
+          <div className=" basis-1/2 finalPhase:hidden" style={{ direction: "rtl" }}>
             <div className="mr-3 ml-6 h-[85%] bg-mainBgColor">
               <h1 className="flex items-center justify-center">
                 Sasan Company
               </h1>
-              <div className="flex flex-col items-center justify-center text-center">
+              <div className="flex flex-col items-center justify-center text-center ">
                 <p>We Are a gameing company build in 1999</p>
                 <p>
-                  after years of working hard we proudly peresent u this shit
+                  after years of working hard we proudly peresent u this
                 </p>
                 <p>u can rly try us dont worry</p>
-                <p> we wont scam u buy games and enjoy</p>
+                <p> u buy games and enjoy</p>
               </div>
             </div>
           </div>

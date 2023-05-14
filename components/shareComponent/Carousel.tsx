@@ -25,9 +25,9 @@ const Carousel: React.FC<Types> = ({
 
   const [elemental, setElemental] = useState<any>();
   const mainUl: any = useRef();
-  //const [forwardNumber, setForwardNumber] = useState<number>(1);
+
   const [price, setPrice] = useState<number>(0);
-  /*const fest = () => {};*/
+
   const { data, isLoading, error, isError } = useQuery("carousel", () => {
     return axios.get("/api/hello");
   });
@@ -38,13 +38,11 @@ let test5=useRef(6)
 
 
  const dataPictures = data?.data.pictures;
- console.log(dataPictures)
-  console.log("i was rerendered")
+
   const size = mainUl?.current?.children[0].getBoundingClientRect().width;
 
   const moveref: any = useRef();
   const carouselMove = async (key: string, e) => {
-    console.log(key)
     const currentSlide = mainUl?.current?.querySelector(".current-slide");
 
     const prevSlide = currentSlide?.previousElementSibling
@@ -65,9 +63,7 @@ let test5=useRef(6)
     if (key === "forward" ) {
       //setForwardNumber((prevState) => prevState + 1);
       forwardNumber.current+=1
-      console.log(test5.current)
-      console.log("i work belice me")
-      console.log(forwardNumber)
+
       if (forwardNumber.current >= 5 ) {
         setPrice(dataPictures[0]?.price);
       } else {
@@ -76,7 +72,6 @@ let test5=useRef(6)
 
       currentSlide?.classList?.remove("current-slide");
       currentDot?.classList?.remove("current-slide");
-      console.log(forwardNumber+" "+" "+ "iwas here")
       if (forwardNumber.current < dataPictures.length && mainUl.current) {
         mainUl.current.style.transform =
           "translateX(-" + forwardSlideSize + ")";
@@ -98,7 +93,6 @@ let test5=useRef(6)
       currentSlide.classList.remove("current-slide");
       currentDot.classList.remove("current-slide");
       if (forwardNumber.current > 1) {
-        console.log("i worked too");
         prevDot.classList.add("current-slide");
         prevSlide?.classList.add("current-slide");
         mainUl.current.style.transform = "translateX(-" + prevSlideSize + ")";
@@ -109,11 +103,9 @@ let test5=useRef(6)
         forwardNumber.current=dataPictures.length
         dotFinder.current.children[4].classList.add("current-slide");
         mainUl.current.children[4]?.classList.add("current-slide");
-        console.log(prevSlide);
       }
     }
   };
-  console.log(forwardNumber);
   const dotFinder: any = useRef();
   const eventFinder = (e) => {
     const targetDot = e.target.closest("button");

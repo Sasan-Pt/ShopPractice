@@ -77,37 +77,52 @@ const Contacts = () => {
       </div>
       <form className="flex justify-center justify-items-center " onSubmit={formik.handleSubmit}>
         <div className="flex-col">
-          <div className="w-32 ">
+          <div>
+            <div>
             <label>Name:</label>
-            <input placeholder={"fuck u"} id={"firstName"} type={"firstName"} {...formik.getFieldProps('firstName')}/>
+            </div>
+            <input className="w-56 rounded-2xl pl-2 shadow-xl" placeholder={"Name"} id={"firstName"} type={"firstName"} {...formik.getFieldProps('firstName')}/>
             {formik.touched.firstName && formik.errors.firstName ? (
 
                 <div>{formik.errors.firstName}</div>
 
             ) : null}
 
+          </div>
+          <div>
+            <div>
             <label>last name:</label>
-            <input placeholder={"fuck u"} id={"lastName"} type={"lastName"} {...formik.getFieldProps('lastName')}/>
+            </div>
+            <input className="w-56 rounded-2xl pl-2 shadow-xl" placeholder={"LastName"} id={"lastName"} type={"lastName"} {...formik.getFieldProps('lastName')}/>
             {formik.touched.lastName && formik.errors.lastName ? (
 
                 <div>{formik.errors.lastName}</div>
 
             ) : null}
-
+          </div>
+          <div>
+            <div>
             <label htmlFor="email">Email:</label>
-            <input placeholder={"fuck u"} id={"email"} type={"email"}  {...formik.getFieldProps('email')}/>
+            </div>
+            <input className="w-56 rounded-2xl pl-2 shadow-xl" placeholder={"Email"} id={"email"} type={"email"}  {...formik.getFieldProps('email')}/>
             {formik.touched.email && formik.errors.email ? (
 
                 <div>{formik.errors.email}</div>
 
             ) : null}
-
-
-            <label>description:</label>
-            <textarea id={"description"} {...formik.getFieldProps('description')}/>
           </div>
+          <div>
+            <div>
+            <label>description:</label>
+            </div>
+            <textarea className="w-56 rounded-2xl pl-2 shadow-2xl" id={"description"} {...formik.getFieldProps('description')}/>
+          </div>
+
           <div className="space-x-12">
-            <button type={"submit"}>something</button>
+            <div className="flex justify-center justify-items-center mt-6">
+              <button type={"submit"} className="bg-firstColor w-44 rounded-3xl h-14">send Feedback</button>
+            </div>
+
           </div>
         </div>
       </form>

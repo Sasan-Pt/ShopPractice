@@ -10,7 +10,6 @@ import Checkout from "../../pages/Checkout";
 
 const Header = (props: string | null | undefined) => {
   const [totalNumber, setTotalNumber] = useAtom(objectsAtom);
-  console.log(totalNumber.length);
 
   const [show, showState] = useAtom(showAtom);
   const [showMenuBar, setShowMenuBar] = useState(false);
